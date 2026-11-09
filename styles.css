@@ -1,0 +1,228 @@
+/* ============================================================
+   IJRU JUDGES QUICK REFERENCE — styles.css
+   ============================================================
+   HOW TO EDIT THIS FILE (no coding experience needed):
+
+   - Colors are all defined once at the top, in the ":root"
+     block below, as "--variable-name: value;". Change a value
+     there and it updates everywhere that color is used.
+
+   - Button size/spacing is controlled by the ".rule-btn" rule.
+     Increase "min-height" to make buttons taller/easier to tap.
+
+   - The layout automatically adjusts for phones, tablets, and
+     large gym touchscreens using the "@media" rules near the
+     bottom — you shouldn't need to touch those unless you want
+     to change breakpoints.
+   ============================================================ */
+
+:root {
+  /* --- Core color palette (change these to re-theme the site) ---
+     This is the DARK theme (used by default and whenever the
+     device is set to dark mode). See the "@media (prefers-color-
+     scheme: light)" block further down to change the LIGHT theme
+     colors — e.g. for a gym touchscreen used in a bright room. */
+  --color-bg: #0f172a;          /* page background */
+  --color-header-bg: #111827;   /* header background */
+  --color-section-bg: #1e293b;  /* card background */
+  --color-text: #f1f5f9;        /* main text color */
+  --color-subtext: #94a3b8;     /* muted/secondary text */
+  --color-accent: #f59e0b;      /* primary button color */
+  --color-accent-hover: #fbbf24;/* button color on hover/tap */
+  --color-accent-text: #1a1200; /* text color on top of the accent buttons */
+  --color-full-btn: #334155;    /* "full rules" secondary button color */
+  --color-full-btn-hover: #475569;
+
+  /* --- Sizing --- */
+  --max-width: 900px;
+  --radius: 14px;
+}
+
+/* Automatically switch to a light theme when the device/browser
+   is set to light mode, so the page stays readable in a bright
+   gym under strong lights. Edit the values here to change the
+   light-mode colors; leave this block alone to keep one theme
+   only. */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #f8fafc;
+    --color-header-bg: #ffffff;
+    --color-section-bg: #ffffff;
+    --color-text: #0f172a;
+    --color-subtext: #475569;
+    --color-accent: #d97706;
+    --color-accent-hover: #b45309;
+    --color-accent-text: #fffaf0;
+    --color-full-btn: #e2e8f0;
+    --color-full-btn-hover: #cbd5e1;
+  }
+
+  .site-header {
+    border-bottom-color: rgba(15, 23, 42, 0.08);
+  }
+
+  .rule-section {
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  }
+}
+
+/* --- Basic reset --- */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+  /* Prevents the little blue/gray flash box when tapping links on touchscreens */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --- Header --- */
+.site-header {
+  background-color: var(--color-header-bg);
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-header h1 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  letter-spacing: 0.01em;
+}
+
+.site-header .subtitle {
+  margin: 0;
+  color: var(--color-subtext);
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+}
+
+/* --- Page layout --- */
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2rem;
+}
+
+/* --- Each role section (Difficulty, Presentation, Technical, etc.) --- */
+.rule-section {
+  background-color: var(--color-section-bg);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.rule-section h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  color: var(--color-text);
+  border-left: 5px solid var(--color-accent);
+  padding-left: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+/* Small badge next to a section heading showing the official
+   IJRU judge-role letter code(s), e.g. "D", "DA · DB", "P". */
+.role-code {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-subtext);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-full-btn);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+/* --- Button grid: stacks on phones, grows into columns on wider screens --- */
+.button-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+}
+
+/* --- The buttons themselves ---
+   Large min-height and generous padding keep these easy to tap
+   accurately on phones, tablets, and gym touchscreens alike. */
+.rule-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 64px;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+  font-size: 1.02rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease, transform 0.05s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.rule-btn:hover,
+.rule-btn:focus-visible {
+  background-color: var(--color-accent-hover);
+}
+
+.rule-btn:active {
+  transform: scale(0.98);
+}
+
+/* "Full rules" / shared-content buttons get a slightly different
+   look so they stand out as the broader/catch-all link within
+   each section */
+.rule-btn-full {
+  background-color: var(--color-full-btn);
+  color: var(--color-text);
+}
+
+.rule-btn-full:hover,
+.rule-btn-full:focus-visible {
+  background-color: var(--color-full-btn-hover);
+}
+
+/* --- Footer note --- */
+.site-footer {
+  text-align: center;
+  padding: 1.5rem 1rem 2.5rem;
+  color: var(--color-subtext);
+  font-size: 0.85rem;
+}
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* Tablets and small laptops: allow two buttons per row */
+@media (min-width: 560px) {
+  .button-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Large gym touchscreens / big displays: make everything bigger
+   and easier to hit from a distance */
+@media (min-width: 1000px) {
+  .rule-btn {
+    min-height: 76px;
+    font-size: 1.15rem;
+  }
+
+  .site-header h1 {
+    font-size: 2.8rem;
+  }
+}
